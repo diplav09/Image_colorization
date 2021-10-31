@@ -7,8 +7,11 @@ import os
 from scipy import misc
 import imageio
 
+np.random.seed(0)
+torch.manual_seed(0)
+
 class ColorizeData(Dataset):
-    def __init__(self):  
+    def __init__(self,files_name):  
         # Initialize dataset, you may use a second dataset for validation if required
         # Use the input transform to convert images to grayscale
         self.input_transform = T.Compose([T.ToTensor(),
@@ -20,14 +23,16 @@ class ColorizeData(Dataset):
         self.target_transform = T.Compose([T.ToTensor(),
                                            T.Resize(size=(256,256)),
                                            T.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+                                        #    T.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
         self.data_dir = '/content/gdrive/My Drive/image_colorization/landscape_images'
-        self.files_name = os.listdir(self.data_dir)
+        self.files_name = files_name 
         self.dataset_size = len(self.files_name)
+        print("data size = ",self.dataset_size)
     
     def __len__(self):
         return self.dataset_size
     
     def __getitem__(self, index):
-        image = np.asarray(imageio.imread(os.path.join(self.data_dir, self.files_name[idx])))
+        image = np.asarray(imageio.imread(os.path.join(self.data_dir, self.files_name[index])))
         # Return the input tensor and output tensor for training
         return self.input_transform(image), self.target_transform(image)
