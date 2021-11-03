@@ -29,9 +29,9 @@ class Net(nn.Module):
       nn.Conv2d(64, 32, kernel_size=3, stride=1, padding=1),
       nn.BatchNorm2d(32),
       nn.ReLU(),
-      nn.Conv2d(32, 3, kernel_size=3, stride=1, padding=1),
-      nn.Upsample(scale_factor=2)
-    #   nn.Sigmoid() # added extra
+      nn.Conv2d(32, 2, kernel_size=3, stride=1, padding=1),
+      nn.Upsample(scale_factor=2),
+      nn.Sigmoid() # added extra
     )
 
   def forward(self, input):
