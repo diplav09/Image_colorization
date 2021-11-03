@@ -6,6 +6,8 @@ import numpy as np
 import os
 from scipy import misc
 import imageio
+from skimage import io, color
+
 
 np.random.seed(0)
 torch.manual_seed(0)

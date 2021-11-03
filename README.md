@@ -41,3 +41,17 @@ Parameters and their default values:
 >```model_path```: **```model/resnet_lab_full_epoch_14.pth```** &nbsp; - &nbsp; path to the  **model weight** <br/>
 </br>
 
+#### 5. Loss function Experimented with 
+- L1 loss   
+- L2 loss
+- Smooth L1 Loss
+- Multi-Scale Structural Simlarity Loss
+After trying these loss following combination gave the best result for me 0.90 L1 + 0.1 SSIM
+
+Given more time would like to further experiment with weighting L1 loss inversely to the frequency with which their colors appears and try to experiment with Perceptual Loss.
+
+#### 6. Metric Used  
+- L1 distance between generated image and actual image in ab color space 
+- Deviation in average saturation color between generated image and actual image (to check average mood of image) in ab color space.
+
+
